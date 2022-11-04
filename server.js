@@ -24,13 +24,21 @@ app.post("/", async (req, res) => {
     operation_type,
   };
 
-  result = data.x + data.y;
+  let result;
+  if (req.body.operation_type === operation_type[0]) {
+    result = data.x + data.y;
+  } else if (req.body.operation_type === operation_type[1]) {
+    result = data.x - data.y;
+  } else if (req.body.operation_type === operation_type[2]) {
+    result = data.x * data.y;
+  }else{
+    result = "Invalid operation_type"
+  }
 
   return res.status(200).send({
     slackUsername: "Temitope Agbaje",
     result: result,
-    operation_type: data.operation_type[0],
-   
+    operation_type: req.body.operation_type,
   });
 });
 
