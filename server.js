@@ -26,10 +26,11 @@ app.post("/", async (req, res) => {
 
   result = data.x + data.y;
 
-  return res.status(200).contentType('application/json').send({
+  return res.status(200).send({
     slackUsername: "Temitope Agbaje",
-    operation_type: data.operation_type[0],
     result: result,
+    operation_type: data.operation_type[0],
+   
   });
 });
 
